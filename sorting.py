@@ -9,6 +9,18 @@ tests = {
     5 : [15,33,45,21,8,45,1,37,14,48,20,24,16,37,26],
 }
 
+def bubble(unsorted_list):
+    for i in range(0, len(unsorted_list)):
+        for e in range(i, len(unsorted_list)):
+            if unsorted_list[e] > unsorted_list[e]:
+                temp_var = unsorted_list[e]
+
+                unsorted_list[e] = unsorted_list[i]
+                unsorted_list[i] = temp_var
+
+    return unsorted_list
+
+
 def select(unsorted_list):
     for i in range(0, len(unsorted_list)):
         # smallest_number[0] = value
