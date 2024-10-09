@@ -1,14 +1,6 @@
 #bubble(list) - > sorted ist
 
 #selection(list) -> sorted list
-tests = {
-    1 : [22,46,18,9,40,16,24,32,5,36,33,41,1,5,13],
-    2 : [9,50,7,0,30,50,9,12,22,45,9,42,17,13,29],
-    3 : [31,49,1,48,19,41,30,27,0,47,0,31,48,10,28],
-    4 : [8,14,43,30,6,23,33,40,19,48,7,33,45,23,35],
-    5 : [15,33,45,21,8,45,1,37,14,48,20,24,16,37,26],
-}
-
 def bubble(unsorted_list):
     for i in range(0, len(unsorted_list)):
         for e in range(i, len(unsorted_list)):
@@ -53,22 +45,50 @@ def select(unsorted_list):
     return unsorted_list
 
 
-# def main():
-#     for i in tests:
-#         print("\n") # This adds a space after each element. It also puts a space in front of the first item in 
-#                     # the output, which I find easier to read. 
+def insertion(unsorted_list):
+    """
+    This is my attempt at an insertion sort algorithm. 
+    
+    INPUTS:
+        unsorted_list - list: The list that needs sorted
+    """
+    # The logic to swap the values does not need to be in the insertion loop. Keeping it here
+    # keeps the runtime section of the insertion() function easier to read. 
 
-#         print("Test case:", i)
+    # TODO: I would prefer this to not be nested: This solution is not perminant. 
+    def swap_values_from_indexes(input_list, index1, index2=0):
+        """
+        This function takes two indexes in a list and swaps them. 
+        
+        INPUTS: 
 
-#         # I need to pass the unsorted lists first before calling the select() method. This keeps the lists fully sorted
-#         selected_list = tests[i]
-#         print(f"Unsorted list: {selected_list}")
+            input_list - list: Expects a list in which to swap
+            index1 - int: Represents the index of the first item we need to swap.
+            index2 - int: Represents the index of the second item we need to swap. 
+        """
+        
+        # Note: There has to be a better way to do this without all this code duplication. 
+        if type(input_list) != list or type(index1) != int or type(index2) != int:
+            print(f"swap_values({type(input_list), {type(index1), type(index2)}}) - unexpected paramaters receved")
+            return input_list
 
-#         sorted_list = select(tests[i])
-#         print(f"Sorted list: {sorted_list}")
-#         print(f"Sort success: {sorted(selected_list) == sorted_list}")
+        temp_var = input_list[index1-1] # Due to what I assume is just 0 base indexing, [index-1] is required to get the correct item. 
+
+        input_list[index2] = input_list[index1]    # Swaps input_list[index2] with input_list[index1].
+        input_list[index1] = temp_var # Swaps input_list[index1] with temp_var.
+
+        return input_list
+    
+    # Runtime section of the program
+
+    for i in range(0, len(unsorted_list)): # Outer Loop
+        for e in range(0, len(unsorted_list)): # Inner loop
+            while e != 0 and unsorted_list[e] < unsorted_list[e-1]: 
+                # Continuously swaps the item with the index before it until it is larger at index[e] - 1. 
+                # index e must be greater than 0 for this to work. without the check this program completely breaks. 
+
+                unsorted_list = swap_values_from_indexes(unsorted_list, e, e-1)
 
 
-main()
-
+    return unsorted_list
 #insertion(list) > sorted list
