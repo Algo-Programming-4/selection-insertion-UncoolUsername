@@ -14,22 +14,30 @@ def bubble(unsorted_list):
 
 
 def select(unsorted_list):
-    for i in range(0, len(unsorted_list)):
+    for i in range(len(unsorted_list)):
         # smallest_number[0] = value
         # smallest_number[1] = index
-        smallest_number = unsorted_list[0]
-        smallest_number_index = 0        
+        smallest_number = [unsorted_list[0], 0] #FORMAT: (Item, IndexOfItem)
 
         # Find the smallest number
-        for e in range(i, len(unsorted_list)):
+        for e in range(i + 1, len(unsorted_list) - 1):
             # Finds and sets the smallest number across the entire list to be used later
-            if unsorted_list[e] < smallest_number:
-                smallest_number = unsorted_list[e]
-                smallest_number_index = e
-        
+            print(e)
+            if unsorted_list[e] < smallest_number[0]:
+                smallest_number[0] = unsorted_list[e]
+                smallest_number[1] = e
+
+        # print(f"Current index {i}: checking {i}")  
+        # print(f"Current smallest number is {smallest_number[0]} at index {smallest_number[1]}\n")  
         # Swap the two elements
-        unsorted_list[smallest_number_index] = unsorted_list[i]
-        unsorted_list[i] = smallest_number
+        temp_var = unsorted_list[i]
+
+        unsorted_list[i] = smallest_number[0]
+        unsorted_list[smallest_number[1]] = temp_var
+
+
+    return unsorted_list
+
 
 
     # Because the search algorithm is weird, this bypass will fix it. 
