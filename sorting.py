@@ -17,38 +17,22 @@ def select(unsorted_list):
     for i in range(len(unsorted_list)):
         # smallest_number[0] = value
         # smallest_number[1] = index
-        smallest_number = [unsorted_list[0], 0] #FORMAT: (Item, IndexOfItem)
+        smallest_number = [unsorted_list[i], i] #FORMAT: (Item, IndexOfItem)
 
         # Find the smallest number
-        for e in range(i + 1, len(unsorted_list) - 1):
+        for e in range(i, len(unsorted_list)):
             # Finds and sets the smallest number across the entire list to be used later
-            print(e)
+
             if unsorted_list[e] < smallest_number[0]:
                 smallest_number[0] = unsorted_list[e]
                 smallest_number[1] = e
 
-        # print(f"Current index {i}: checking {i}")  
-        # print(f"Current smallest number is {smallest_number[0]} at index {smallest_number[1]}\n")  
         # Swap the two elements
         temp_var = unsorted_list[i]
 
         unsorted_list[i] = smallest_number[0]
         unsorted_list[smallest_number[1]] = temp_var
 
-
-    return unsorted_list
-
-
-
-    # Because the search algorithm is weird, this bypass will fix it. 
-    # This is stupid. 
-    # Very stupid.
-
-    # TODO This programming war crime is stupid, fix it. 
-    item = unsorted_list[0]
-
-    unsorted_list.pop(0)
-    unsorted_list.append(item)
 
     return unsorted_list
 
