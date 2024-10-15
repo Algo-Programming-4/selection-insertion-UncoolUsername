@@ -13,7 +13,7 @@ def bubble(unsorted_list):
     return unsorted_list
 
 
-def select(unsorted_list):
+def selection(unsorted_list):
     for i in range(len(unsorted_list)):
         # smallest_number[0] = value
         # smallest_number[1] = index
